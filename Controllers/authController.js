@@ -56,20 +56,20 @@ export const getUserController = async (req, res) => {
 
 // SendOTP Controller
 export const sendOtpController = async (req, res) => {
-
+  
   const { email } = req.body;
   if (!email) {
     return res.status(400).json({ success: false, error: 'Email required' });
   }
 
+  const normalizedEmail = email.trim().toLowerCase();
   const otp = Math.floor(100000 + Math.random() * 900000).toString();
   console.log('Generated OTP:', otp);
 
   try {
-    // Send OTP via Email
     await transporter.sendMail({
       from: `"arcAi.engineer" <${process.env.EMAIL_USER}>`,
-      to: email,
+      to: normalizedEmail,
       subject: 'Your Email verify OTP',
       html: `
         <div style="font-family: Arial, sans-serif;">
@@ -81,9 +81,7 @@ export const sendOtpController = async (req, res) => {
       `,
     });
 
-    console.log('OTP Email Sent');
-    // Save OTP in Redis with 5 minutes expiry
-    await redisClient.set(`otp:${email}`, otp, { ex: 300 });
+    await redisClient.set(`otp:${normalizedEmail}`, otp, { ex: 300 });
 
     return res.status(200).send({
       success: true,
