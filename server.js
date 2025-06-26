@@ -9,16 +9,17 @@ dotenv.config();
 const app = express();
 const allowedOrigins = [
   'http://localhost:5173',
-  'https://uplify-alpha.vercel.app',
+  'https://arcaiengineer.vercel.app',
+  'https://arcai.engineer'
 ];
 
 app.use(cors({
   origin: (origin, callback) => {
-    if (!origin) return callback(null, true); // Allow curl/Postman
+    if (!origin) return callback(null, true); // allow curl/Postman
     if (allowedOrigins.some(allowed => origin.startsWith(allowed))) {
       return callback(null, true);
     }
-    console.log("❌ Blocked by CORS:", origin);
+    console.log("Blocked by CORS:", origin);
     return callback(new Error('Not allowed by CORS'));
   },
   credentials: true,
