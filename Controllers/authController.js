@@ -68,12 +68,12 @@ export const sendOtpController = async (req, res) => {
   try {
     // Send OTP via Email
     await transporter.sendMail({
-      from: `"TeeFusion" <${process.env.EMAIL_USER}>`,
+      from: `"arcAi.engineer" <${process.env.EMAIL_USER}>`,
       to: email,
-      subject: 'Your Password Reset OTP',
+      subject: 'Your Email verify OTP',
       html: `
         <div style="font-family: Arial, sans-serif;">
-          <h2 style="color: #2563eb;">TeeFusion Password Reset</h2>
+          <h2 style="color: #2563eb;">arcAi Email Verification</h2>
           <p>Your OTP code is:</p>
           <h3 style="letter-spacing: 3px;">${otp}</h3>
           <p>This code will expire in 5 minutes.</p>
