@@ -10,7 +10,8 @@ const app = express();
 const allowedOrigins = [
   'http://localhost:5173',
   'https://arcaiengineer.vercel.app',
-  'https://arcai.engineer'
+  'https://arcai.engineer',
+  'https://arcai0.netlify.app'
 ];
 
 app.use(cors({
