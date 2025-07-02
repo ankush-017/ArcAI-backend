@@ -11,7 +11,8 @@ const allowedOrigins = [
   'http://localhost:5173',
   'https://arcaiengineer.vercel.app',
   'https://arcai.engineer',
-  'https://arcai0.netlify.app'
+  'https://arcai0.netlify.app',
+  'https://www.arcai.engineer'
 ];
 
 app.use(cors({
