@@ -178,7 +178,7 @@ export const getuserControllerbyUID = async (req, res) => {
       success: true,
       user,
     });
-  } 
+  }
   catch (err) {
     console.error("Error fetching user by UID:", err);
     return res.status(500).send({
@@ -212,7 +212,7 @@ export const updateProfileController = async (req, res) => {
       user: updatedUser,
     });
 
-  } 
+  }
   catch (err) {
     console.error("Update Profile Error:", err);
     return res.status(500).json({
@@ -221,3 +221,17 @@ export const updateProfileController = async (req, res) => {
     });
   }
 };
+
+export const getAllUserController = async (req, res) => {
+
+  try {
+    const alluser = await User.find();
+    res.status(200).send({
+      success: true,
+      alluser
+    })
+  }
+  catch (err) {
+    res.status(500).json({ error: 'Failed to fetch users' });
+  }
+}
