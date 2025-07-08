@@ -8,27 +8,15 @@ dotenv.config();
 
 const app = express();
 
-const allowedOrigins = [
-  'http://localhost:5173',
-  'https://arcai0.netlify.app',
-  'https://arcaiengineer.vercel.app',
-  'https://arcai.engineer',
-  'https://www.arcai.engineer'
-];
 app.use(cors({
-  origin: (origin, callback) => {
-    if (!origin) return callback(null, true);
-    if (allowedOrigins.includes(origin)) return callback(null, true);
-    console.log("Blocked by CORS:", origin);
-    return callback(new Error("Not allowed by CORS"));
-  },
+  origin: ['http://localhost:5173',
+    'https://arcai0.netlify.app',
+    'https://arcaiengineer.vercel.app',
+    'https://arcai.engineer',
+    'https://www.arcai.engineer'
+  ],
   credentials: true,
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization'],
 }));
-
-// Must handle OPTIONS preflight
-app.options("*", cors());
 
 app.use(express.json());
 
